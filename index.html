@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    </style>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>TODO-LIST</title>
+</head>
+<body>
+    <h class="todoTitle">TODO-LIST</h>
+    <div class="containerform">
+        <form class="formTodo">
+            <input type="text" id="inputTask" placeholder="Write a new Task"/>
+            <button type="submit" id="submitBtn">
+                <span>ADD TASK</span>
+                <i class='bx bx-plus-medical'></i>
+            </button>
+            <select id="filterBtn">
+                <option>ALL</option>
+                <option>CHECKED</option>
+                <option>UNCHECKED</option>
+            </select>
+        </form>
+        <div class="containerList">
+    </div>
+        <div id="headerTaskList">
+            <label id="statusLabel">STATUS</label>
+            <label id="taskLabel">TASK</label>
+            <label id="dateLabel">DATE</label>
+            <label id="editLabel">EDIT</label>
+            <label id="removeLabel">REMOVE</label>
+        </div>
+        <ul class="containerTaskList">
+            <div class="containerTaskLI">
+                <li>
+                    <button class="checkBtn">
+                        <i class='bx bx-checkbox'></i>
+                    </button>
+                    <label class="taskLI">ExampleTask</label>
+                    <label class="dateLI">17/02/21</label>
+                    <button class="editBtn">
+                        <i class='bx bx-edit-alt' ></i>
+                    </button>
+                    <button class="removeBtn">
+                        <i class='bx bx-trash' ></i>
+                    </button>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <script src="index.js" type="text/javascript"></script>
+</body>
+</html>

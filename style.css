@@ -1,0 +1,89 @@
+*
+{
+    font-family: "Poppins", sans-serif;
+    font-weight: 200px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root
+{
+    --principal-color: #0088FF;
+}
+
+.todoTitle
+{
+    letter-spacing: 0.25em;
+    font-size: 46px;
+    color: var(--principal-color);
+}
+
+.todoTitle, .formTodo
+{
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formTodo
+{
+    min-height: 7vh;
+    max-width: 900px;
+    margin:0 auto;
+}
+
+.formTodo
+{
+    background: #FFFFFF;
+    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
+}
+
+#inputTask
+{
+    outline: none;
+    overflow: hidden;
+    padding: 0.5rem;
+    width: 39rem;
+    border-radius: 0;
+    border: 1.5px solid #AAAAAA;
+    font-size: 0.95rem;
+}
+
+#inputTask::placeholder
+{
+    color:#CCCCCC;
+    font-size: 0.95rem;
+}
+
+#filterBtn
+{
+    outline: none;
+    overflow: hidden;
+}
+
+select
+{
+    width: 6rem;
+    cursor: pointer;
+}
+
+#submitBtn, #filterBtn
+{
+    padding: 0.5rem;
+    margin-left: 0.75rem;
+    background-color: white;
+    border-radius: 0;
+    border:1.5px solid var(--principal-color);
+}
+
+#filterBtn
+{
+    padding: 0.45rem;
+}
+
+#submitBtn i, #submitBtn span, #filterBtn
+{
+    color: var(--principal-color);
+}
