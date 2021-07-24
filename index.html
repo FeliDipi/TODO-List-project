@@ -13,24 +13,22 @@
 </head>
 <body>
     <h class="todoTitle">TODO-LIST</h>
-    <div class="containerform">
-        <form class="formTodo">
-            <input type="text" id="inputTask" placeholder="Write a new Task"/>
-            <button type="submit" id="submitBtn">
-                <span>ADD TASK</span>
-                <i class='bx bx-plus-medical'></i>
-            </button>
-            <select id="filterBtn">
-                <option>ALL</option>
-                <option>CHECKED</option>
-                <option>UNCHECKED</option>
-            </select>
-        </form>
-        <div class="containerList">
-    </div>
+    <form class="formTodo">
+        <input type="text" id="inputTask" placeholder="Write a new Task"/>
+        <button type="submit" id="submitBtn">
+            <span>ADD TASK</span>
+            <i class='bx bx-plus-medical'></i>
+        </button>
+        <select id="filterBtn">
+            <option>ALL</option>
+            <option>CHECKED</option>
+            <option>UNCHECKED</option>
+        </select>
+    </form>
+    <div class="containerList">
         <div id="headerTaskList">
             <label id="statusLabel">STATUS</label>
-            <label id="taskLabel">TASK</label>
+            <label id="taskLabel">NAME TASK</label>
             <label id="dateLabel">DATE</label>
             <label id="editLabel">EDIT</label>
             <label id="removeLabel">REMOVE</label>

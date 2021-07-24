@@ -27,11 +27,72 @@
     align-items: center;
 }
 
-.formTodo
+.formTodo, .containerList
 {
-    min-height: 7vh;
+    min-height: 6vh;
     max-width: 900px;
     margin:0 auto;
+}
+
+.containerList
+{
+    margin-top: 25px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
+}
+
+#headerTaskList
+{
+    margin-top: 15px;
+    width: 840px;
+    height: 30px;
+    border-bottom: 2px solid rgba(0, 136, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#headerTaskList label
+{
+    width: 100px;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+}
+
+#statusLabel, #taskLabel,#dateLabel,#editLabel,#removeLabel
+{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+#statusLabel
+{
+    right: 150px;
+}
+
+#taskLabel
+{
+    right: 140px;
+}
+
+#dateLabel
+{
+    left: 270px;
+}
+
+#editLabel
+{
+    left: 250px;
+}
+
+#removeLabel
+{
+    left: 195px;
 }
 
 .formTodo
@@ -44,7 +105,7 @@
 {
     outline: none;
     overflow: hidden;
-    padding: 0.5rem;
+    padding: 0.3rem;
     width: 39rem;
     border-radius: 0;
     border: 1.5px solid #AAAAAA;
@@ -65,14 +126,15 @@
 
 select
 {
-    width: 6rem;
     cursor: pointer;
+    width: 6rem;
 }
 
 #submitBtn, #filterBtn
 {
-    padding: 0.5rem;
-    margin-left: 0.75rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    margin-left: 0.6rem;
     background-color: white;
     border-radius: 0;
     border:1.5px solid var(--principal-color);
@@ -80,7 +142,13 @@ select
 
 #filterBtn
 {
-    padding: 0.45rem;
+    padding: 0.35rem;
+    margin-left: 1rem;
+}
+
+#submitBtn i, #submitBtn span
+{
+    pointer-events: none;
 }
 
 #submitBtn i, #submitBtn span, #filterBtn
