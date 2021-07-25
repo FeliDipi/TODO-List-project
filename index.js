@@ -2,11 +2,17 @@ function load()
 {
     const $inputTask = document.querySelector("#inputTask");
     const $submitBtn = document.querySelector("#submitBtn");
+    const $filterBtn = document.querySelector("#filterBtn");
     const $containerListTask = document.querySelector(".containerTaskList");
 
     $submitBtn.addEventListener("click", addNewTask);
+    $filterBtn.addEventListener('change', (e)=>
+    {
+        loadTask($filterBtn.value.toString());
+    });
 
-    loadTask();
+
+    loadTask("ALL");
 
     function addNewTask(event)
     {
@@ -70,22 +76,44 @@ function load()
         return listTasks.length-1;
     }
 
-    function loadTask()
+    function loadTask(filter)
     {
+        $containerListTask.innerHTML = "";
         if(localStorage.getItem("tasks") !== null)
         {
             let listTasks=JSON.parse(localStorage.getItem("tasks"));
 
             for(let i=0 ;i<listTasks.length;i++)
             {
-                const LI = document.createElement("li");
-                LI.innerHTML=listTasks[i];
-                LI.addEventListener("click",clickAction);
-                LI.id = i;
-    
-                $containerListTask.appendChild(LI);
+                switch(filter)
+                {
+                    case "UNCHECK":
+                        {
+                            if(!listTasks[i].includes("checkActive")) loadHtmlTask(listTasks[i],i);
+                        }
+                    break;
+
+                    case "CHECK":
+                        {
+                            if(listTasks[i].includes("checkActive")) loadHtmlTask(listTasks[i],i);
+                        }
+                    break;
+
+                    default: loadHtmlTask(listTasks[i],i);
+                        break;
+                }
             }
         }
+    }
+
+    function loadHtmlTask(task,id)
+    {
+        const LI = document.createElement("li");
+        LI.innerHTML=task;
+        LI.addEventListener("click",clickAction);
+        LI.id = id;
+
+        $containerListTask.appendChild(LI);
     }
 
     function clickAction(e)

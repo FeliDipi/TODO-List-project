@@ -12,7 +12,6 @@
 :root
 {
     --principal-color: #0088FF;
-    --scale-anim: scale(97%,97%);
 }
 
 .todoTitle
@@ -100,7 +99,7 @@
     outline: none;
     overflow: hidden;
     padding: 0.3rem;
-    width: 39rem;
+    width: 37rem;
     border-radius: 0;
     border: 1.5px solid #AAAAAA;
     font-size: 0.95rem;
@@ -114,6 +113,7 @@
 
 #submitBtn, #filterBtn
 {
+    min-width: 7rem;
     cursor: pointer;
     padding: 0.4rem;
     margin-left: 0.6rem;
@@ -130,7 +130,6 @@
 }
 #submitBtn:hover
 {
-    transform: var(--scale-anim);;
     background-color: var(--principal-color);
 }
 
@@ -144,13 +143,13 @@
     color: var(--principal-color);
     outline: none;
     overflow: hidden;
-    padding: 0.35rem;
+    padding: 0.4rem;
+    width: 8rem;
     margin-left: 1rem;
 }
 
 #filterBtn:hover
 {
-    transform: var(--scale-anim);;
     background-color: var(--principal-color);
     color: white;
 }
@@ -227,7 +226,6 @@ select
 {
     color: white;
     background-color: var(--principal-color);
-    transform: var(--scale-anim);;
 }
 
 .checkBox::before
