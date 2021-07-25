@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 *
 {
     font-family: "Poppins", sans-serif;
@@ -44,6 +46,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* position: fixed;
+    z-index: 10; */
 }
 
 #headerTaskList label
@@ -170,6 +174,7 @@ select
     box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
     overflow:hidden;
     overflow-y:scroll;
+    transform: scale(100%,100%);
 }
 
 .containerList li
@@ -200,6 +205,7 @@ select
 .taskLI
 {
     overflow: hidden;
+    max-width: 400px;
     letter-spacing: 1px;
     margin-left: 2.25rem;
 }
@@ -214,6 +220,7 @@ select
     font-size: 17px;
     transition: 0.25s ease;
     margin-left: 27px;
+    cursor: pointer;
 }
 
 #editBtn:hover, #removeBtn:hover
@@ -247,7 +254,7 @@ select
     position: absolute;
     display: inline-block;
     left: 28px;
-    top: 18px;
+    top: 16px;
     width: 5px;
     height: 12px;
     border: 1px solid white;

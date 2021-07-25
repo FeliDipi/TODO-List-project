@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    </style>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <title>TODO-LIST</title>
@@ -14,7 +11,7 @@
 <body>
     <h class="todoTitle">TODO-LIST</h>
     <form class="formTodo">
-        <input type="text" id="inputTask" placeholder="Write a new Task"/>
+        <input type="text" id="inputTask" placeholder="Write a new Task" maxlength="40"/>
         <button type="submit" id="submitBtn">
             <span>ADD TASK</span>
             <i class='bx bx-plus-medical'></i>
@@ -44,7 +41,6 @@
                     <i class='bx bx-edit-alt' id="editBtn"></i>
                     <i class='bx bx-trash' id="removeBtn"></i>
                 </div>
-                </button>
             </li>
             <li>
                 <div class="conteinerLeft">
@@ -56,7 +52,6 @@
                     <i class='bx bx-edit-alt' id="editBtn"></i>
                     <i class='bx bx-trash' id="removeBtn"></i>
                 </div>
-                </button>
             </li>
             <li>
                 <div class="conteinerLeft">
@@ -68,7 +63,6 @@
                     <i class='bx bx-edit-alt' id="editBtn"></i>
                     <i class='bx bx-trash' id="removeBtn"></i>
                 </div>
-                </button>
             </li>
         </ul>
     </div>
