@@ -7,11 +7,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: 0.25s ease;
 }
 
 :root
 {
     --principal-color: #0088FF;
+    --principal-font-color: #000000;
+    --check-font-color: #AAAAAA;
+    --background-color: #FFFFFF;
+}
+
+body
+{
+    background-color: var(--background-color);
 }
 
 .todoTitle
@@ -38,6 +47,7 @@
 
 #headerTaskList
 {
+    background-color: var(--background-color);
     margin-top: 15px;
     width: 840px;
     height: 30px;
@@ -45,8 +55,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* position: fixed;
-    z-index: 10; */
 }
 
 #headerTaskList label
@@ -61,6 +69,11 @@
     width: 100%;
     display: flex;
     position: relative;
+}
+
+#statusLabel,#taskLabel,#dateLabel,#editLabel,#removeLabel
+{
+    color:var(--principal-font-color);
 }
 
 #statusLabel
@@ -90,16 +103,17 @@
 
 .formTodo
 {
-    background: #FFFFFF;
+    color: var(--background-color);
     box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
 }
 
 #inputTask
 {
+    background-color: var(--background-color);
     outline: none;
     overflow: hidden;
     padding: 0.3rem;
-    width: 37rem;
+    width: 34rem;
     border-radius: 0;
     border: 1.5px solid #AAAAAA;
     font-size: 0.95rem;
@@ -113,14 +127,14 @@
 
 #submitBtn, #filterBtn
 {
+    background-color: var(--background-color);
     min-width: 7rem;
     cursor: pointer;
     padding: 0.4rem;
     margin-left: 0.6rem;
-    background-color: white;
+    color: white;
     border-radius: 0;
     border:1.5px solid var(--principal-color);
-    transition: 0.25s ease;
 }
 
 #submitBtn i, #submitBtn span
@@ -160,8 +174,28 @@ select
     width: 6rem;
 }
 
+#darkMode
+{
+    background-color: var(--background-color);
+    min-width: 1rem;
+    cursor: pointer;
+    padding: 0.51rem;
+    margin-left: 1rem;
+    color: var(--principal-color);
+    border-radius: 0;
+    border:1.5px solid var(--principal-color);
+    font-size: 18px;
+}
+
+#darkMode:hover
+{
+    background: var(--principal-color);
+    color:white;
+}
+
 .containerList
 {
+    background-color: var(--background-color);
     max-width: 900px;
     height: 50vh;
     position: relative;
@@ -172,8 +206,12 @@ select
     align-items: center;
     box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
     overflow:hidden;
-    overflow-y:scroll;
     transform: scale(100%,100%);
+}
+
+.scrolleableContent
+{
+    overflow-y:scroll;
 }
 
 .containerList li
@@ -188,7 +226,6 @@ select
     height: 50px;
     position: relative;
     padding: 12px 20px;
-    transition: 0.25s ease;
 }
 
 .containerList li:last-child
@@ -207,17 +244,17 @@ select
     max-width: 400px;
     letter-spacing: 1px;
     margin-left: 2.25rem;
+    color:var(--principal-font-color);
 }
 
 #editBtn, #removeBtn
 {
-    background-color: white;
+    color: var(--background-color);
     border-radius: 0;
     color: var(--principal-color);
     border: 1.5px solid var(--principal-color);
     padding: 0.3rem;
     font-size: 17px;
-    transition: 0.25s ease;
     margin-left: 27px;
     cursor: pointer;
 }
@@ -237,7 +274,7 @@ select
     width: 22px;
     height: 22px;
     border: 1.5px solid var(--principal-color);
-    background-color: white;
+    color: var(--background-color);
     cursor: pointer;
 }
 
@@ -251,7 +288,7 @@ select
     content: "";
     position: absolute;
     display: inline-block;
-    left: 29px;
+    left: 28px;
     top: 16px;
     width: 5px;
     height: 12px;
@@ -264,13 +301,12 @@ select
 {
     transform: scale(100%,0%);
     transform-origin: top;
-    transition: 0.5s ease;
 }
 
 .taskChecked
 {
     text-decoration:line-through;
-    color: #AAAAAA;
+    color: var(--check-font-color);
 }
 
 .dateLI

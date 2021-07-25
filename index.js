@@ -4,15 +4,42 @@ function load()
     const $submitBtn = document.querySelector("#submitBtn");
     const $filterBtn = document.querySelector("#filterBtn");
     const $containerListTask = document.querySelector(".containerTaskList");
+    const $containerList = document.querySelector(".containerList");
+    const $darkMode = document.querySelector("#darkMode");
+    let darkModeStatus = false;
 
     $submitBtn.addEventListener("click", addNewTask);
-    $filterBtn.addEventListener('change', (e)=>
+    $filterBtn.addEventListener("change", (e)=>
     {
         loadTask($filterBtn.value.toString());
     });
-
+    $darkMode.addEventListener("click", changeTheme)
 
     loadTask("ALL");
+
+    function changeTheme(e)
+    {
+        let root = document.documentElement;
+
+        if(!darkModeStatus)
+        {
+            darkModeStatus=true;
+            root.style.setProperty('--background-color', "#333333");
+            root.style.setProperty('--principal-font-color', "white");
+        }
+        else
+        {
+            root.style.setProperty('--background-color', "white");
+            root.style.setProperty('--principal-font-color', "black");
+            darkModeStatus=false;
+        }
+    }
+
+    function updateScrolleable()
+    {
+        if($containerList.clientHeight < $containerList.scrollHeight) $containerList.classList.add("scrolleableContent");
+        else $containerList.classList.remove("scrolleableContent");
+    }
 
     function addNewTask(event)
     {
@@ -21,6 +48,7 @@ function load()
         {
             const newTask = templateLI($inputTask.value);
             $containerListTask.appendChild(newTask);
+            updateScrolleable();
         }
     }
     
@@ -153,6 +181,7 @@ function load()
                     {
                         parent.remove();
                     })
+                    updateScrolleable();
                 }
                 break;
         }
@@ -161,7 +190,7 @@ function load()
     function saveCheck(taskCheck)
     {
         let id = taskCheck.id;
-        console.log(id);
+        //console.log(id);
         let taskListSaved = JSON.parse(localStorage.getItem("tasks"));
         taskListSaved[id]=taskCheck.innerHTML;
         localStorage.setItem("tasks",JSON.stringify(taskListSaved));
