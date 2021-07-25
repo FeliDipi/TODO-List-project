@@ -10,6 +10,7 @@
 :root
 {
     --principal-color: #0088FF;
+    --scale-anim: scale(97%,97%);
 }
 
 .todoTitle
@@ -27,22 +28,11 @@
     align-items: center;
 }
 
-.formTodo, .containerList
+.formTodo
 {
     min-height: 6vh;
     max-width: 900px;
     margin:0 auto;
-}
-
-.containerList
-{
-    margin-top: 25px;
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
 }
 
 #headerTaskList
@@ -82,7 +72,7 @@
 
 #dateLabel
 {
-    left: 270px;
+    left: 255px;
 }
 
 #editLabel
@@ -118,18 +108,6 @@
     font-size: 0.95rem;
 }
 
-#filterBtn
-{
-    outline: none;
-    overflow: hidden;
-}
-
-select
-{
-    cursor: pointer;
-    width: 6rem;
-}
-
 #submitBtn, #filterBtn
 {
     cursor: pointer;
@@ -138,20 +116,158 @@ select
     background-color: white;
     border-radius: 0;
     border:1.5px solid var(--principal-color);
-}
-
-#filterBtn
-{
-    padding: 0.35rem;
-    margin-left: 1rem;
+    transition: 0.25s ease;
 }
 
 #submitBtn i, #submitBtn span
 {
+    color: var(--principal-color);
     pointer-events: none;
 }
+#submitBtn:hover
+{
+    transform: var(--scale-anim);;
+    background-color: var(--principal-color);
+}
 
-#submitBtn i, #submitBtn span, #filterBtn
+#submitBtn:hover, #submitBtn:hover span, #submitBtn:hover i
+{
+    color: white;
+}
+
+#filterBtn
 {
     color: var(--principal-color);
+    outline: none;
+    overflow: hidden;
+    padding: 0.35rem;
+    margin-left: 1rem;
+}
+
+#filterBtn:hover
+{
+    transform: var(--scale-anim);;
+    background-color: var(--principal-color);
+    color: white;
+}
+
+select
+{
+    cursor: pointer;
+    width: 6rem;
+}
+
+.containerList
+{
+    max-width: 900px;
+    height: 50vh;
+    position: relative;
+    margin:0 auto;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
+    overflow:hidden;
+    overflow-y:scroll;
+}
+
+.containerList li
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 136, 255, 0.25);
+    width: 820px;
+    height: 50px;
+    position: relative;
+    padding: 12px 20px;
+    transition: 0.25s ease;
+}
+
+.containerList li:last-child
+{
+    border:none;
+}
+
+.containerList li:hover
+{
+    background-color: rgba(0, 136, 255, 0.03);
+}
+
+.taskLI
+{
+    overflow: hidden;
+    letter-spacing: 1px;
+    margin-left: 2.25rem;
+}
+
+#editBtn, #removeBtn
+{
+    background-color: white;
+    border-radius: 0;
+    color: var(--principal-color);
+    border: 1.5px solid var(--principal-color);
+    padding: 0.3rem;
+    font-size: 17px;
+    transition: 0.25s ease;
+    margin-left: 27px;
+}
+
+#editBtn:hover, #removeBtn:hover
+{
+    color: white;
+    background-color: var(--principal-color);
+    transform: var(--scale-anim);;
+}
+
+.checkBox::before
+{
+    content: "";
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--principal-color);
+    background-color: white;
+    cursor: pointer;
+}
+
+.checkActive::before
+{
+    background-color: var(--principal-color);
+}
+
+.checkActive::after
+{
+    content: "";
+    position: absolute;
+    display: inline-block;
+    left: 28px;
+    top: 18px;
+    width: 5px;
+    height: 12px;
+    border: 1px solid white;
+    border-width: 0px 3px 3px 0px;
+    transform: rotate(45deg);
+}
+
+.taskChecked
+{
+    text-decoration:line-through;
+}
+
+.dateLI
+{
+    background-color: var(--principal-color);
+    color: white;
+    font-size: 19px;
+    padding:0.11rem;
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
+    overflow: hidden;
+    letter-spacing: 0.5px;
 }
