@@ -22,9 +22,9 @@ function load()
     {
         var actualDate = new Date(Date.now());
         
-        let date = actualDate.getDate().toString();
-        let month = actualDate.getMonth().toString();
-        let year = actualDate.getFullYear().toString().slice(2,4);
+        let date = actualDate.getDate();
+        let month = actualDate.getMonth()+1;
+        let year = actualDate.getFullYear().toString();//.slice(2,4);
         
         const LI = document.createElement("li");
         const taskContent =`
@@ -38,12 +38,14 @@ function load()
             <i class='bx bx-trash' id="removeBtn"></i>
         </div>
         `
+        let id = saveTask(taskContent);
+
         LI.innerHTML=taskContent;
         LI.addEventListener("click",clickAction);
+        LI.id  = id;
         
         $inputTask.value = "";
-        saveTask(taskContent);
-        
+
         return LI;
     }
 
@@ -64,6 +66,8 @@ function load()
         listTasks.push(newTask);
         
         localStorage.setItem("tasks", JSON.stringify(listTasks));
+
+        return listTasks.length-1;
     }
 
     function loadTask()
@@ -72,13 +76,15 @@ function load()
         {
             let listTasks=JSON.parse(localStorage.getItem("tasks"));
 
-            listTasks.forEach(task => {
+            for(let i=0 ;i<listTasks.length;i++)
+            {
                 const LI = document.createElement("li");
-                LI.innerHTML=task;
+                LI.innerHTML=listTasks[i];
                 LI.addEventListener("click",clickAction);
-
+                LI.id = i;
+    
                 $containerListTask.appendChild(LI);
-            });
+            }
         }
     }
 
@@ -89,17 +95,56 @@ function load()
         {
             case "checkBoxBtn":
                 { 
-                    if(!task.classList.contains("checkActive")) 
+                    const parent = task.parentElement;
+                    const nameTask = parent.querySelector(".taskLI");
+
+                    if(!task.classList.contains("checkActive") && nameTask!==null) 
                     {
                         task.classList.add("checkActive");
+                        nameTask.classList.add("taskChecked");
                     }
                     else 
                     {
                         task.classList.remove("checkActive");
+                        nameTask.classList.remove("taskChecked");
                     }
+
+                    let parentLI = parent.parentElement;
+
+                    //console.log(parentLI.innerHTML);
+
+                    saveCheck(parentLI);
+                }
+                break;
+            case "removeBtn":
+                {
+                    const parent = e.target.parentElement.parentElement;
+                    parent.classList.add("removeActive");
+                    removeTask(parent);
+                    parent.addEventListener("transitionend", (e)=>
+                    {
+                        parent.remove();
+                    })
                 }
                 break;
         }
+    }
+
+    function saveCheck(taskCheck)
+    {
+        let id = taskCheck.id;
+        console.log(id);
+        let taskListSaved = JSON.parse(localStorage.getItem("tasks"));
+        taskListSaved[id]=taskCheck.innerHTML;
+        localStorage.setItem("tasks",JSON.stringify(taskListSaved));
+    }
+
+    function removeTask(taskRemove)
+    {
+        let id = taskRemove.id;
+        let taskListSaved = JSON.parse(localStorage.getItem("tasks"));
+        taskListSaved.splice(id, 1);
+        localStorage.setItem("tasks",JSON.stringify(taskListSaved));
     }
 }
 

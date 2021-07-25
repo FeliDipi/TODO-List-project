@@ -76,7 +76,7 @@
 
 #dateLabel
 {
-    left: 255px;
+    left: 245px;
 }
 
 #editLabel
@@ -253,7 +253,7 @@ select
     content: "";
     position: absolute;
     display: inline-block;
-    left: 28px;
+    left: 29px;
     top: 16px;
     width: 5px;
     height: 12px;
@@ -262,9 +262,17 @@ select
     transform: rotate(45deg);
 }
 
+.removeActive
+{
+    transform: scale(100%,0%);
+    transform-origin: top;
+    transition: 0.5s ease;
+}
+
 .taskChecked
 {
     text-decoration:line-through;
+    color: #AAAAAA;
 }
 
 .dateLI
