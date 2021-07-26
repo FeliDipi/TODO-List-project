@@ -103,8 +103,9 @@ body
 
 .formTodo
 {
+    min-width: 300px;
     color: var(--background-color);
-    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.10);
 }
 
 #inputTask
@@ -205,6 +206,7 @@ select
 {
     background-color: var(--background-color);
     max-width: 900px;
+    min-width: 300px;
     height: 50vh;
     position: relative;
     margin:0 auto;
@@ -212,7 +214,7 @@ select
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 50px 5px rgba(0, 0, 0, 0.10);
     overflow:hidden;
     transform: scale(100%,100%);
 }
@@ -255,7 +257,7 @@ select
     color:var(--principal-font-color);
 }
 
-#editBtn, #removeBtn
+.editBtn, #removeBtn
 {
     color: var(--background-color);
     border-radius: 0;
@@ -267,7 +269,13 @@ select
     cursor: pointer;
 }
 
-#editBtn:hover, #removeBtn:hover
+.editBtn:hover, #removeBtn:hover
+{
+    color: white;
+    background-color: var(--principal-color);
+}
+
+.editBtnActive
 {
     color: white;
     background-color: var(--principal-color);

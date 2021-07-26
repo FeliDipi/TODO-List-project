@@ -1,25 +1,33 @@
 function load()
 {
+    //html elements 
     const $inputTask = document.querySelector("#inputTask");
     const $submitBtn = document.querySelector("#submitBtn");
     const $filterBtn = document.querySelector("#filterBtn");
     const $containerListTask = document.querySelector(".containerTaskList");
     const $containerList = document.querySelector(".containerList");
     const $darkMode = document.querySelector("#darkMode");
+
+    //state of dark mode
     let darkModeStatus = false;
 
-    $submitBtn.addEventListener("click", addNewTask);
+    //events of elements html
+    $submitBtn.addEventListener("click", addNewTask);//add new task
+
+    //select filter and load the tasks filtered
     $filterBtn.addEventListener("change", (e)=>
     {
         loadTask($filterBtn.value.toString());
     });
+
+    //change theme
     $darkMode.addEventListener("click", changeTheme);
 
-    loadTask("ALL");
+    loadTask("ALL");//initial load with all tasks
 
     function changeTheme(e)
     {
-        let root = document.documentElement;
+        let root = document.documentElement;//get var of css file
 
         if(!darkModeStatus)
         {
@@ -35,32 +43,35 @@ function load()
         }
     }
 
+    //if the content overflow then container list become a scrolleable element
     function updateScrolleable()
     {
+        //check the content is overflowed
         if($containerList.clientHeight < $containerList.scrollHeight) $containerList.classList.add("scrolleableContent");
         else $containerList.classList.remove("scrolleableContent");
     }
 
+    //function that add a new task
     function addNewTask(event)
     {
-        event.preventDefault();
-        if($inputTask.value!=="") 
+        event.preventDefault();//refresh page with submit off
+        if($inputTask.value!=="")//check that input is not empty
         {
-            const newTask = templateLI($inputTask.value);
-            $containerListTask.appendChild(newTask);
-            updateScrolleable();
+            const newTask = templateLI($inputTask.value);//create new LI element
+            $containerListTask.appendChild(newTask);//add LI to the list
+            updateScrolleable();//check overflow
         }
     }
     
     function templateLI(task)
     {
-        var actualDate = new Date(Date.now());
+        var actualDate = new Date(Date.now());//get the actual date
         
-        let date = actualDate.getDate();
-        let month = actualDate.getMonth()+1;
-        let year = actualDate.getFullYear().toString();//.slice(2,4);
+        let date = actualDate.getDate();//get day
+        let month = actualDate.getMonth()+1;//get month
+        let year = actualDate.getFullYear().toString();//get full year
 
-        const LI = document.createElement("li");
+        const LI = document.createElement("li");//create node html LI
         const taskContent =`
         <div class="conteinerLeft">
             <label class="checkBox" id="checkBoxBtn"></label>
@@ -69,25 +80,24 @@ function load()
         </div>
         <div>
             <label class="dateLI">${date}/${month}/${year}</label>
-            <i class='bx bx-edit-alt' id="editBtn"></i>
+            <i class='bx bx-edit-alt editBtn' id="editBtnId"></i>
             <i class='bx bx-trash' id="removeBtn"></i>
         </div>
         `
-        let id = saveTask(taskContent);
+        let id = saveTask(taskContent);//sabe new task element
 
-        LI.innerHTML=taskContent;
-        LI.addEventListener("click",clickAction);
-        LI.id  = id;
+        LI.innerHTML=taskContent;//add content task to the element LI
+        LI.addEventListener("click",clickAction);//add click event
+        LI.id  = id;//add identificator
         
-        $inputTask.value = "";
+        $inputTask.value = "";//reset input
 
         return LI;
     }
 
+    //function that save task on localStorage and return id 
     function saveTask(newTask)
     {
-        //console.log(newTask);
-
         let listTasks;
         if(localStorage.getItem("tasks") === null)
         {
@@ -105,6 +115,7 @@ function load()
         return listTasks.length-1;
     }
 
+    //function that load tasks from localStorage and check the filter condition 
     function loadTask(filter)
     {
         $containerListTask.innerHTML = "";
@@ -135,6 +146,7 @@ function load()
         }
     }
 
+    //function that print tasks element on the html file 
     function loadHtmlTask(task,id)
     {
         const LI = document.createElement("li");
@@ -145,9 +157,10 @@ function load()
         $containerListTask.appendChild(LI);
     }
 
+    //function that check if clicked on edit, remove or check button
     function clickAction(e)
     {
-        const task = e.target;
+        const task = e.target;//get target element on click
         switch(task.id)
         {
             case "checkBoxBtn":
@@ -155,6 +168,7 @@ function load()
                     const parent = task.parentElement;
                     const nameTask = parent.querySelector(".taskLI");
 
+                    //switch check and unchecked button
                     if(!task.classList.contains("checkActive") && nameTask!==null) 
                     {
                         task.classList.add("checkActive");
@@ -168,59 +182,64 @@ function load()
 
                     let parentLI = parent.parentElement;
 
-                    //console.log(parentLI.innerHTML);
-
-                    saveCheck(parentLI);
+                    saveCheck(parentLI);//save changes
                 }
                 break;
             case "removeBtn":
                 {
                     const parent = e.target.parentElement.parentElement;
-                    parent.classList.add("removeActive");
-                    removeTask(parent);
+                    parent.classList.add("removeActive");//add class that active the animation delete
+                    removeTask(parent);//remove task from localStorage
+                    //check the animation finished and remove html element from page
                     parent.addEventListener("transitionend", (e)=>
                     {
                         parent.remove();
                     })
+
+                    //check overflow
                     updateScrolleable();
                 }
                 break;
-            case "editBtn":
+            case "editBtnId":
                 {
                     const parent = e.target.parentElement.parentElement;
                     const $conteinerLeft = parent.querySelector(".conteinerLeft");
                     const $inputEdit = $conteinerLeft.querySelector(".inputEditTask");
                     
+                    //switch edit mode active or disable
                     if(!$conteinerLeft.classList.contains("editActive")) 
                     {
                         $conteinerLeft.classList.add("editActive");
+                        e.target.classList.add("editBtnActive");
                     }
                     else
                     {
                         $conteinerLeft.classList.remove("editActive");
-                    }
-                    
-                    if($inputEdit.value!=="")
-                    {
-                        parent.querySelector(".taskLI").innerHTML = $inputEdit.value;
-                        $inputEdit.placeholder = $inputEdit.value;
-                        $inputEdit.value="";
-                        $conteinerLeft.classList.remove("editActive");
-                        saveCheck(parent);
+                        e.target.classList.remove("editBtnActive");
+
+                        //if input edit not empty then save changes
+                        if($inputEdit.value!=="")
+                        {
+                            parent.querySelector(".taskLI").innerHTML = $inputEdit.value;//update task html element
+                            $inputEdit.placeholder = $inputEdit.value;//update placeholder input edit with the new task
+                            $inputEdit.value="";//reset input edit
+                            saveCheck(parent);//save changes
+                        }
                     }
                 }
         }
     }
 
+    //function that save changes (checks and edits) on localStorage
     function saveCheck(taskCheck)
     {
         let id = taskCheck.id;
-        //console.log(id);
         let taskListSaved = JSON.parse(localStorage.getItem("tasks"));
         taskListSaved[id]=taskCheck.innerHTML;
         localStorage.setItem("tasks",JSON.stringify(taskListSaved));
     }
 
+    //function that save changes (remove) on localStorage
     function removeTask(taskRemove)
     {
         let id = taskRemove.id;
@@ -230,4 +249,5 @@ function load()
     }
 }
 
+//when the window loaded execute the load function
 window.onload = load;
