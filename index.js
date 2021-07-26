@@ -6,6 +6,7 @@ function load()
     const $containerListTask = document.querySelector(".containerTaskList");
     const $containerList = document.querySelector(".containerList");
     const $darkMode = document.querySelector("#darkMode");
+    let $inputEdit = null;
     let darkModeStatus = false;
 
     $submitBtn.addEventListener("click", addNewTask);
@@ -13,7 +14,7 @@ function load()
     {
         loadTask($filterBtn.value.toString());
     });
-    $darkMode.addEventListener("click", changeTheme)
+    $darkMode.addEventListener("click", changeTheme);
 
     loadTask("ALL");
 
@@ -59,12 +60,13 @@ function load()
         let date = actualDate.getDate();
         let month = actualDate.getMonth()+1;
         let year = actualDate.getFullYear().toString();//.slice(2,4);
-        
+
         const LI = document.createElement("li");
         const taskContent =`
         <div class="conteinerLeft">
             <label class="checkBox" id="checkBoxBtn"></label>
             <label class="taskLI">${task}</label>
+            <input type="text" placeholder="${task}" class="inputEditTask" maxlength="40"/>
         </div>
         <div>
             <label class="dateLI">${date}/${month}/${year}</label>
@@ -107,7 +109,7 @@ function load()
     function loadTask(filter)
     {
         $containerListTask.innerHTML = "";
-        if(localStorage.getItem("tasks") !== null)
+        if(localStorage.getItem("tasks") !== null && localStorage.getItem("tasks").length>0)
         {
             let listTasks=JSON.parse(localStorage.getItem("tasks"));
 
@@ -184,6 +186,30 @@ function load()
                     updateScrolleable();
                 }
                 break;
+            case "editBtn":
+                {
+                    const parent = e.target.parentElement.parentElement;
+                    const $conteinerLeft = parent.querySelector(".conteinerLeft");
+                    const $inputEdit = $conteinerLeft.querySelector(".inputEditTask");
+                    
+                    if(!$conteinerLeft.classList.contains("editActive")) 
+                    {
+                        $conteinerLeft.classList.add("editActive");
+                    }
+                    else
+                    {
+                        $conteinerLeft.classList.remove("editActive");
+                    }
+                    
+                    if($inputEdit.value!=="")
+                    {
+                        parent.querySelector(".taskLI").innerHTML = $inputEdit.value;
+                        $inputEdit.placeholder = $inputEdit.value;
+                        $inputEdit.value="";
+                        $conteinerLeft.classList.remove("editActive");
+                        saveCheck(parent);
+                    }
+                }
         }
     }
 

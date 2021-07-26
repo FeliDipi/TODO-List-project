@@ -59,7 +59,7 @@ body
 
 #headerTaskList label
 {
-    width: 100px;
+    width: 150px;
     letter-spacing: 0.02em;
     font-size: 14px;
 }
@@ -78,27 +78,27 @@ body
 
 #statusLabel
 {
-    right: 150px;
+    right: 30px;
 }
 
 #taskLabel
 {
-    right: 140px;
+    right: 90px;
 }
 
 #dateLabel
 {
-    left: 245px;
+    left: 265px;
 }
 
 #editLabel
 {
-    left: 250px;
+    left: 225px;
 }
 
 #removeLabel
 {
-    left: 195px;
+    left: 125px;
 }
 
 .formTodo
@@ -191,6 +191,14 @@ select
 {
     background: var(--principal-color);
     color:white;
+}
+
+#noTasks
+{
+    color:#CCCCCC;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .containerList
@@ -319,4 +327,34 @@ select
     padding-right: 0.45rem;
     overflow: hidden;
     letter-spacing: 0.5px;
+}
+
+.conteinerLeft input 
+{
+    display: none;
+}
+
+.conteinerLeft .taskLI 
+{
+    display: inline-flex;
+}
+
+.editActive input
+{
+    overflow: hidden;
+    min-width: 475px;
+    letter-spacing: 1px;
+    display:inline-block;
+    position: relative;
+    margin-left: 1.5rem;
+    padding:0.10rem;
+    background-color: var(--background-color);
+    outline: none;
+    border-radius: 0;
+    border: 1.5px solid #AAAAAA;
+}
+
+.editActive .taskLI
+{
+    display: none;
 }
