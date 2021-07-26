@@ -6,7 +6,6 @@ function load()
     const $containerListTask = document.querySelector(".containerTaskList");
     const $containerList = document.querySelector(".containerList");
     const $darkMode = document.querySelector("#darkMode");
-    let $inputEdit = null;
     let darkModeStatus = false;
 
     $submitBtn.addEventListener("click", addNewTask);
