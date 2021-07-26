@@ -144,6 +144,8 @@ function load()
                 }
             }
         }
+
+        updateScrolleable();
     }
 
     //function that print tasks element on the html file 
